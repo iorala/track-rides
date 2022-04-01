@@ -11,13 +11,13 @@
 - Routen hochladen
 - Metadaten versehen 
 	- name, alleine usw. 
-- Routen Analisieren / parsen 
+- Routen Analysieren / parsen 
 	- Dauer -> banal
 	- Distanz 
 	- durchschnittliche HF
 	- (durchschnittsgeschwindigkeit)
-	- Routen als gleiche Routen festhalten? -> manuell auswählen (warnung)
-		- WIe ist das möglich?
+	- Routen als gleiche Routen festhalten? -> Manuell auswählen (warnung bei unterschiedlicher Länge)
+		- Wie ist das möglich?
 		- Stimmen nicht genau überein 
 
 
