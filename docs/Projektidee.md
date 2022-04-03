@@ -77,6 +77,8 @@ Alles = {
 - Für jede Fahrt eine eigene Seite machen: 
   - Grafik mit Geschwindigkeit/Herzfrequenz/Höhenmeter/..?
   -> Datenasuwertung 
+- Fahrten dürfen den Strecken gerne manuell zugeordnet werden 
 ### Dokumentation
   - Readme kann hinweis auf Pythonversion und beschreibung der Module enthalten 
   - Es kann aber auch einfach auf das requirements.txt verweisene werden
+  - Stre
