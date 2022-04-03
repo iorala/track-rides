@@ -22,3 +22,14 @@ Lückenfüller wie: "Dieses Projekt wurde im Rahmen des XX Modules an der XXX ge
 ## Ungelöste/unbearbeitete Probleme
  - Was wurde nicht gelöst
  - Welche Verbesserungen könnten noch gemacht werden.
+
+
+# Neuer Input
+```mermaid
+graph TD
+    A[Start] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[fa:fa-car Car]
+```

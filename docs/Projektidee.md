@@ -81,4 +81,3 @@ Alles = {
 ### Dokumentation
   - Readme kann hinweis auf Pythonversion und beschreibung der Module enthalten 
   - Es kann aber auch einfach auf das requirements.txt verweisene werden
-  - Stre
