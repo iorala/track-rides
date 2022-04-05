@@ -1,5 +1,9 @@
 # Project specific exclusions
+## My GPS test data
 *.gpx
+## hidden macOS files
+.DS_Store
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
