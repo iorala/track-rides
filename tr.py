@@ -1,18 +1,32 @@
 # this file contains all the functions for track-rides
 
 # Load required modules
-import gpxpy
-import gpxpy.gpx
-import pandas as pd
+import gpxo
 
 
-def read_gpx(filename):
-    # Import data from a gpx-file
-    gpx_file = open(filename, 'r')
-    gpx = gpxpy.parse(gpx_file)
-    return gpx
+def read_track(filename):
+    track = gpxo.Track(filename)
+    return track
+
+# To do
+# - Draw map with Folium
+# - import folium
+#
+# m = folium.Map(location=[40.720, -73.993],
+#               zoom_start=15)
+#
+# loc = [(40.720, -73.993),
+#        (40.721, -73.996)]
+#
+# folium.PolyLine(loc,
+#                 color='red',
+#                 weight=15,
+#                 opacity=0.8).add_to(m)
+# m
 
 
+'''
+# Not needed anymore because of using gpxo instead of gpxpy directly 
 def create_df(gpx):
     # create a pandas dataframe from a gpx-object
     df_list = []
@@ -35,19 +49,4 @@ def get_metadata(gpx):
                 "climbs": gpx.get_uphill_downhill().uphill
                 }
     return metadata
-
-# To do
-# - Draw map with Folium
-# - import folium
-#
-# m = folium.Map(location=[40.720, -73.993],
-#               zoom_start=15)
-#
-# loc = [(40.720, -73.993),
-#        (40.721, -73.996)]
-#
-# folium.PolyLine(loc,
-#                 color='red',
-#                 weight=15,
-#                 opacity=0.8).add_to(m)
-# m
+'''
