@@ -48,7 +48,7 @@ class Track:
         self.elevation = np.array([pt.elevation for pt in pts])
         self.time = np.array([pt.time for pt in pts])
         # heartrate hinzugefügt - alr
-        self.heartrate = np.array([pt.extensions[0][1].text for pt in pts])
+        self.heartrate = np.array([pt.extensions[0][1].text for pt in pts], dtype="float64")
 
         # If some elevation or time data is missing, just set attribute to None
 
