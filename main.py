@@ -19,6 +19,7 @@ def formular():
 
 @app.route('/', methods=["GET","POST"])
 # - Main page: main_page
+# COuld maybe be replaced by an overview page: e.g. Search/INsights/view-routes. Could maybe include excerpts from them 
 def main_page():
     # if request.method == "POST":
     #    return "Formular empfangen"
@@ -44,7 +45,7 @@ def new_route():
 #     - Erste Fahrt erstellen - - Formular create_ride einbetten
 #           - GPX-Datei hochladen *
 #           - Medataten erfassen
-#     -> Formularinhalt mit POST an show_routes
+#     -> Formularinhalt mit POST an view_route
     return render_template("new_route.html")
 
 
@@ -65,7 +66,7 @@ def view_route():
 #     - Übersicht der gefahrenen Strecken
 #     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
 #     - Button für neue Fahrt
-#     - Empfängt daten von new_ride 
+#     - Empfängt daten von new_ride und new_route
 # if request.method == "POST":
 #     return "Formular empfangen"
 
