@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+app.config["uploads"]
+
 app = Flask("track-ride")
 
 
@@ -29,6 +31,7 @@ def main_page():
 @app.route('/show_routes', methods=["GET","POST"])
 # - Streckenübersicht
 # - Empfängt Formularinhalte von new_route
+# - FIltermöglichkeiten für Suche (Ersetzt separate suchseite
 def show_routes():
     # if request.method == "POST":
     #     return "Formular empfangen"
@@ -82,13 +85,6 @@ def view_ride():
 
     return render_template("view_ride.html")
 
-@app.route('/search', methods=["GET","POST"])
-def view_ride():
-# - Search page
-#     - Filtert die Strecken
-#     - > Streckenübersicht
-#     - Evtl mit show_routes zusammenfügen 
-    return render_template("view_ride.html")
 
 @app.route('/diary', methods=["GET","POST"])
 def diary():
@@ -96,7 +92,7 @@ def diary():
 #     - Zeigt letzte Strecken
 #     - letzte fahrten mit Statistiken
 #     - Fahrten pro woche
-    return render_template("view_ride.html")
+    return render_template("diary.html")
 
 # App Ausführen
 if __name__ == "__main__":
