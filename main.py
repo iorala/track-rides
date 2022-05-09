@@ -16,7 +16,7 @@ def hello_world():
 
 @app.route('/main', methods=["GET","POST"])
 # - Main page: main_page
-# COuld maybe be replaced by an overview page: e.g. Search/INsights/view-routes. Could maybe include excerpts from them 
+# Could maybe be replaced by an overview page: e.g. Search/Insights/view-routes. Could maybe include excerpts from them
 def main_page():
     # if request.method == "POST":
     #    return "Formular empfangen"
