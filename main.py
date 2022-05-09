@@ -11,13 +11,6 @@ def hello_world():
     return 'Hello, World!'
 
 
-@app.route('/form', methods=["GET","POST"])
-def formular():
-    if request.method == "POST":
-        return "Formular empfangen"
-    return render_template("formular.html")
-
-
 @app.route('/', methods=["GET","POST"])
 # - Main page: main_page
 # COuld maybe be replaced by an overview page: e.g. Search/INsights/view-routes. Could maybe include excerpts from them 
@@ -69,11 +62,11 @@ def view_route():
 #     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
 #     - Button für neue Fahrt
 #     - Empfängt daten von new_ride und new_route
+    upload = False
     if request.method == "POST":
         f = request.files['gpx']
         f.save(f.filename)
-        return render_template("view_route-upload.html")
-
+        upload = True
     return render_template("view_route.html")
 
 @app.route('/view_ride', methods=["GET","POST"])
