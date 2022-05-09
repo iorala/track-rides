@@ -5,7 +5,8 @@ import tr
 
 app = Flask("track-ride")
 
-app.config['UPLOAD_FOLDER'] = "uploads"
+# Create directories for data
+tr.create_dir("uploads")
 
 @app.route('/')
 def hello_world():

@@ -5,6 +5,7 @@ import gpxo
 import json
 from collections import defaultdict
 from collections import Counter
+import os
 
 # how the routes dictionary is built
 routes_structure = defaultdict(dict)
@@ -21,6 +22,10 @@ routes_structure[0] = {
                              "climbs": 3233}
                                 ]
                     }
+
+def create_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 
 def read_track(filename):
