@@ -9,6 +9,7 @@ app = Flask("track-ride")
 tr.create_dir("uploads")
 
 @app.route('/')
+# For testing
 def hello_world():
     return tr.tesd("blah")
 

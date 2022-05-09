@@ -7,9 +7,9 @@ from collections import defaultdict
 from collections import Counter
 import os
 
-# how the routes dictionary is built
-routes_structure = defaultdict(dict)
-routes_structure[0] = {
+# Example structure of the routes dictionary
+routes_ex = defaultdict(dict)
+routes_ex[0] = {
                         "name": "Fahrt um den Zürichsee",
                         "gpx": "path to file",
                         "avg distance": 10.0,
@@ -32,6 +32,7 @@ def read_track(filename):
     track = gpxo.Track(filename)
     return track
 
+
 # Test-Function
 def tesd(hello):
     return "Testing tr import"
@@ -44,6 +45,7 @@ def read_routes(file):
 
 def add_route(new_route,routes):
     return 1
+
 
 def write_routes(file):
     return 0
