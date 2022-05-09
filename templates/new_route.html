@@ -1,10 +1,9 @@
-<--! 
-- Form for creating a route 
-    - Name 
+<!--
+- Form for creating a route
+    - Name
     - Type: training, travel, recreation, race
 - Include the form for new_ride
-- > send to view route 
-
+- > send to view route
 -->
 <!DOCTYPE html>
 <html lang="de">
@@ -14,8 +13,9 @@
     	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
-    <form method="POST">
-        <input type="text" name="vorname" placeholder="Bitte geben Sie Ihren Namen ein">
+    <form action="view_route" method="POST" enctype = "multipart/form-data">
+        <input type="text" name="route_name" placeholder="Gib den Namen für die neue Route ein">
+        <input type = "file" name = "gpx" />
         <button type="submit">Senden</button>
     </form>
 	</body>
