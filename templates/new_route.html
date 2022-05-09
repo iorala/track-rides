@@ -9,12 +9,15 @@
 <html lang="de">
  	<head>
     	<meta charset="utf-8">
-    	<title>Neue Route erstellen</title>
+    	<title>Neue Strecke erstellen</title>
     	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+    <h1>Neue Strecke erstellen</h1>
     <form action="view_route" method="POST" enctype = "multipart/form-data">
-        <input type="text" name="route_name" placeholder="Gib den Namen für die neue Route ein">
+        <h2>Name der Strecke</h2>
+        <input type="text" name="route_name" placeholder="Name eingeben">
+        <h2>GPX-Datei hochladen</h2>
         <input type = "file" name = "gpx" />
         <button type="submit">Senden</button>
     </form>
