@@ -2,11 +2,44 @@
 
 # Load required modules
 import gpxo
+import json
+from collections import defaultdict
+from collections import Counter
+
+# how the routes dictionary is built
+routes_structure = defaultdict(dict)
+routes_structure[0] = {
+                        "name": "Fahrt um den Zürichsee",
+                        "gpx": "path to file",
+                        "avg distance": 10.0,
+                        "avg duration": 123,
+                        "rides": [
+                            {"id": 0,
+                             "distance": 10.4,
+                             "duration": 123,
+                             "avg speed": 25,
+                             "climbs": 3233}
+                                ]
+                    }
 
 
 def read_track(filename):
     track = gpxo.Track(filename)
     return track
+
+
+def read_routes(file):
+    routes = routes_structure
+    return routes
+
+
+def add_route(new_route,routes):
+    return 1
+
+def write_routes(file):
+    return 0
+# Return error message if write isn't possible
+
 
 # To do
 # - Draw map with Folium
