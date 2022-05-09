@@ -2,10 +2,9 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-app.config["uploads"]
-
 app = Flask("track-ride")
 
+app.config['UPLOAD_FOLDER'] = "uploads"
 
 @app.route('/')
 def hello_world():
@@ -70,8 +69,10 @@ def view_route():
 #     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
 #     - Button für neue Fahrt
 #     - Empfängt daten von new_ride und new_route
-# if request.method == "POST":
-#     return "Formular empfangen"
+    if request.method == "POST":
+        f = request.files['gpx']
+        f.save(f.filename)
+        return render_template("view_route-upload.html")
 
     return render_template("view_route.html")
 
