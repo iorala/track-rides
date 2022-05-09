@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import tr
 
 app = Flask("track-ride")
 
@@ -8,10 +9,10 @@ app.config['UPLOAD_FOLDER'] = "uploads"
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return tr.tesd("blah")
 
 
-@app.route('/', methods=["GET","POST"])
+@app.route('/main', methods=["GET","POST"])
 # - Main page: main_page
 # COuld maybe be replaced by an overview page: e.g. Search/INsights/view-routes. Could maybe include excerpts from them 
 def main_page():
@@ -23,7 +24,7 @@ def main_page():
 @app.route('/show_routes', methods=["GET","POST"])
 # - Streckenübersicht
 # - Empfängt Formularinhalte von new_route
-# - FIltermöglichkeiten für Suche (Ersetzt separate suchseite
+# - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
 def show_routes():
     # if request.method == "POST":
     #     return "Formular empfangen"
@@ -54,7 +55,7 @@ def new_ride():
 #     -> Fahrt ansehen
     return render_template("new_ride.html")
 
-@app.route('/view_route', methods=["GET","POST"])
+@app.route('/view_route/<route>', methods=["GET","POST"])
 def view_route():
 # - Streckenübersicht: view_route
 #     - Auf Karte Zeichnen
@@ -62,12 +63,14 @@ def view_route():
 #     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
 #     - Button für neue Fahrt
 #     - Empfängt daten von new_ride und new_route
-    upload = False
     if request.method == "POST":
         f = request.files['gpx']
         f.save(f.filename)
         upload = True
+        return render_template("view_route.html")
+
     return render_template("view_route.html")
+
 
 @app.route('/view_ride', methods=["GET","POST"])
 def view_ride():

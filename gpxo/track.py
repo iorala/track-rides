@@ -6,7 +6,10 @@ import matplotlib.pyplot as plt
 
 import gpxpy
 from vincenty import vincenty
-import mplleaflet
+
+### alr: Comment out because mpleaflet doesn't work correctly anymore -> use Folium
+#import mplleaflet
+
 
 from .general import smooth, closest_pt
 
@@ -241,42 +244,43 @@ class Track:
         """Find index of point in trajectory that is closest to pt=(lat, long)."""
         return closest_pt(pt, (self.latitude, self.longitude))
 
-    def map(self, map_type='osm', embed=False, ax=None, size=(10, 10),
-            plot='plot', **kwargs):
-        """Plot trajectory on map.
-
-        Parameters
-        ----------
-        - map_type can be e.g. osm, esri_aerial, esri_worldtopo, etc. see:
-        https://github.com/jwass/mplleaflet/blob/master/mplleaflet/maptiles.py
-
-        - embed: if True, embed plot in Jupyter. If False (default), open in
-        browser.
-
-        - ax: if not None, use provided matplotlib axes.
-
-        - size: when embedded, size of the figure.
-
-        - plot: 'plot' or 'scatter'
-
-        - **kwargs: any plt.plot or plt.scatter keyword arguments
-        """
-        if ax is None:
-            fig, ax = plt.subplots(figsize=size)
-        else:
-            fig = ax.figure
-
-        if plot == 'plot':
-            ax.plot(self.longitude, self.latitude, '.-r', **kwargs)
-        elif plot == 'scatter':
-            ax.scatter(self.longitude, self.latitude, **kwargs)
-        else:
-            raise ValueError(f'Unrecognized plot type: {plot}')
-
-        parameters = {'fig': fig, 'tiles': map_type}
-        if embed:
-            leaflet = mplleaflet.display(**parameters)
-        else:
-            leaflet = mplleaflet.show(**parameters)
-
-        return leaflet
+### alr: Comment out because mpleaflet doesn't work correctly anymore -> use Folium
+    # def map(self, map_type='osm', embed=False, ax=None, size=(10, 10),
+    #         plot='plot', **kwargs):
+    #     """Plot trajectory on map.
+    #
+    #     Parameters
+    #     ----------
+    #     - map_type can be e.g. osm, esri_aerial, esri_worldtopo, etc. see:
+    #     https://github.com/jwass/mplleaflet/blob/master/mplleaflet/maptiles.py
+    #
+    #     - embed: if True, embed plot in Jupyter. If False (default), open in
+    #     browser.
+    #
+    #     - ax: if not None, use provided matplotlib axes.
+    #
+    #     - size: when embedded, size of the figure.
+    #
+    #     - plot: 'plot' or 'scatter'
+    #
+    #     - **kwargs: any plt.plot or plt.scatter keyword arguments
+    #     """
+    #     if ax is None:
+    #         fig, ax = plt.subplots(figsize=size)
+    #     else:
+    #         fig = ax.figure
+    #
+    #     if plot == 'plot':
+    #         ax.plot(self.longitude, self.latitude, '.-r', **kwargs)
+    #     elif plot == 'scatter':
+    #         ax.scatter(self.longitude, self.latitude, **kwargs)
+    #     else:
+    #         raise ValueError(f'Unrecognized plot type: {plot}')
+    #
+    #     parameters = {'fig': fig, 'tiles': map_type}
+    #     if embed:
+    #         leaflet = mplleaflet.display(**parameters)
+    #     else:
+    #         leaflet = mplleaflet.show(**parameters)
+    #
+    #     return leaflet
