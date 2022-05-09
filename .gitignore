@@ -3,7 +3,9 @@
 *.gpx
 ## hidden macOS files
 .DS_Store
-
+## Folders for dynamic data
+uploads
+dataframes
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
