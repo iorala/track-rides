@@ -29,9 +29,10 @@ Track and compare your gpx-rides
 
  - Da das Speichern von Herzfrequenzdaten in GPX-dateien nicht standartisiert ist, funktioniert dies aktuell nur mit Garmin-GPX Dateien. Für andere Dateien muss das einlesen erweitert werden angepasst werden (siehe https://github.com/tkrajina/gpxpy/issues/119 für Details). 
  - Track-rides enthält code von gpxo v0.1.6 https://github.com/ovinc/gpxo. Dieser ist im Verzeichnis gpxo zu finden
-    - DerCode wurde integriert, damit die Klasse Track gleich um die Herzfrequenzdaten ergänzt werden kann
+    - Der Code wurde integriert, damit die Klasse Track gleich um die Herzfrequenzdaten ergänzt werden kann
     - Wahrscheinlich wäre es möglich, dies mit __init__ on the fly zu machen, was meine aktuellen Python-Kenntnisse aber übersteigt.
     - Am saubersten wäre es aber, das gpxo um allgemein formulierte Herzfrequenzdatenfunktionen zu ergänzen und dies Upstream zu pushen. Dafür fehlt mir aber aktuell die Zeit
+    - gpxo verwendet mpleaflet um karten zu rendern. Mpleaflet wird leider nicht mehr aktiv maintained (letzer Commit 2018, letzter release 2015), und Funktioniert nicht mehr mit aktuellen Versionen von matplotlib. Deshalb wurde der mpleaflet code auskommentiert und die Abhängigkeit entfernt 
 
 # Neuer Input
 ```mermaid

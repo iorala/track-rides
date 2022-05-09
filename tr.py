@@ -27,9 +27,10 @@ def read_track(filename):
     track = gpxo.Track(filename)
     return track
 
-## Test-Function
+# Test-Function
 def tesd(hello):
-    return ("Testing tr import")
+    return "Testing tr import"
+
 
 def read_routes(file):
     routes = routes_structure
