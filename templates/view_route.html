@@ -6,13 +6,20 @@ Shows the data for one route
 -->
 <!DOCTYPE html>
 <html lang="de">
- 	<head>
-    	<meta charset="utf-8">
-    	<title>Route ansehen</title>
-    	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    </head>
-    <body>
+<head>
+	<meta charset="utf-8">
+	<title>Strecke ansehen</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+{% if route == "new" %}
+<p>Neue Strecke hochgeladen!</p>
+{% endif %}
 
+	<h1>Strecke </h1>
 
-	</body>
+<h2></h2>
+
+</body>
+</html>
 </html>

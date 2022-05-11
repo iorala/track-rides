@@ -21,6 +21,7 @@ def route_example():
                         "avg duration": 123,
                         "rides": [
                             {"id": 0,
+                             "date": "26.03.2022",
                              "distance": 10.4,
                              "duration": 123,
                              "avg speed": 25,

@@ -7,8 +7,10 @@ import tr
 app = Flask("track-ride")
 
 # Create directories for data
-tr.create_dir("uploads")
 savefile = "routes.json"
+savedir = "uploads"
+tr.create_dir(savedir)
+
 routes = defaultdict(dict)
 
 @app.route('/')
@@ -41,11 +43,12 @@ def view_route(route):
 #     - Empfängt daten von new_ride und new_route
     if request.method == "POST":
         # neue Route speichern
-        f = request.files['gpx']
-        f.save()
-        return render_template("view_route.html")
+        gpx_file = request.files['gpx']
+        gpx_file.save(savedir + "/" + gpx_file.filename)
+        #return render_template("view_route.html")
 
-    return render_template("view_route.html")
+
+    return render_template("view_route.html", route=route)
 
 ######
 ######
@@ -86,6 +89,7 @@ def new_ride():
 def view_ride():
 # - Fahrten ansehen: view_ride
 #     - Einzelansicht der Fahrt
+#     - Lädt das GPX-Ein
 #     - Auf Karte Zeichnen
 #     - Statistikplots
 #     -> zurück zu Strecke
