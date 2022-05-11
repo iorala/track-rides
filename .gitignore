@@ -8,6 +8,7 @@ uploads
 dataframes
 # File with the route data
 routes.json
+routes.json.bak
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

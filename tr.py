@@ -9,14 +9,12 @@ import os
 from datetime import datetime
 import json
 
-
 def route_example():
     # Example structure of the routes dictionary
     routes = defaultdict(dict)
     # example_route
     routes[0] = {
                         "name": "Fahrt um den Zürichsee",
-                        "gpx": "path to file",
                         "avg distance": 10.0,
                         "avg duration": 123,
                         "rides": [
@@ -25,14 +23,39 @@ def route_example():
                              "distance": 10.4,
                              "duration": 123,
                              "avg speed": 25,
-                             "climbs": 3233}
+                             "climbs": 3233,
+                             "gpx": "path to file"}
                                 ]
                     }
     return routes
 
+def add_route(routes,route_name,route_type):
+        id_route = len(routes)
+        routes[id_route] = {
+            "name": route_name,
+            "type": route_type,
+            "rides": defaultdict(dict)
+        }
+        return (routes,id_route)
+
+        # erste fahrt in der Route speichern
+        ride_date = request.form['ride_date']
+        gpx_file = request.files['gpx_file']
+
+
+def add_ride(routes,id_route,ride_date):
+        id_ride = len(routes[id_route]["rides"])
+        gpx = "ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
+        routes[id_route]["rides"][id_ride] = {
+            "date": ride_date,
+            "gpx" : gpx
+        }
+        return (routes,gpx)
+
 def write_routes(routes,savefile):
     with open(savefile, "w") as open_file:
         json.dump(routes, open_file)
+
 
 
 def load_routes(savefile):
@@ -40,7 +63,7 @@ def load_routes(savefile):
         with open(savefile) as open_file:
             routes = json.load(open_file)
     except FileNotFoundError:
-        routes = {}
+        routes = defaultdict(dict)
     return routes
 
 

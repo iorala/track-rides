@@ -14,11 +14,22 @@
     </head>
     <body>
     <h1>Neue Strecke erstellen</h1>
-    <form action="view_route/new" method="POST" enctype = "multipart/form-data">
-        <h2>Name der Strecke</h2>
-        <input type="text" name="route_name" placeholder="Name eingeben">
-        <h2>GPX-Datei hochladen</h2>
-        <input type = "file" name = "gpx" />
+    <form action="new_route_add" method="POST" enctype = "multipart/form-data">
+        <h2>Angaben zur Strecke</h2>
+        <label for="route_name">Name der Strecke:</label>
+        <input type="text" name="route_name" id="route_name" placeholder="Name eingeben">
+        <label for="route_type">Art der Strecke:</label>
+        <select id="route_type" name="route_type">
+            <option value="training">Training</option>
+            <option value="commuting">Commuting</option>
+            <option value="race">Race</option>
+        </select>
+
+        <h3>Fahrt erfassen</h3>
+            <label for="ride_date">Datum der Fahrt:</label>
+            <input type="date" id="ride_date" name="ride_date">
+            <label for="gpx_file">GPX-Datei hochladen:</label>
+            <input type = "file" name="gpx_file" id="gpx_file"/>
         <button type="submit">Senden</button>
     </form>
 	</body>
