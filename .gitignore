@@ -6,6 +6,8 @@
 ## Folders for dynamic data
 uploads
 dataframes
+# File with the route data
+routes.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

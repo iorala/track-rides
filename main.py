@@ -1,17 +1,55 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from collections import defaultdict
 import tr
 
 app = Flask("track-ride")
 
 # Create directories for data
 tr.create_dir("uploads")
+savefile = "routes.json"
+routes = defaultdict(dict)
 
 @app.route('/')
 # For testing
 def hello_world():
-    return tr.tesd("blah")
+    routes = tr.load_routes(savefile)
+    return routes
+
+@app.route('/new_route', methods=["GET","POST"])
+def new_route():
+# - Strecke erstellen: new_route
+#     - Statische Seite mit Formular
+#     - Metadaten für Route
+#         - Name
+#         - Funktion (training, time trial, race)
+#     - Erste Fahrt erstellen - - Formular create_ride einbetten
+#           - GPX-Datei hochladen *
+#           - Medataten erfassen
+#     -> Formularinhalt mit POST an view_route
+    return render_template("new_route.html")
+
+
+@app.route('/view_route/<route>', methods=["GET","POST"])
+def view_route(route):
+# - Streckenübersicht: view_route
+#     - Auf Karte Zeichnen
+#     - Übersicht der gefahrenen Strecken
+#     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
+#     - Button für neue Fahrt
+#     - Empfängt daten von new_ride und new_route
+    if request.method == "POST":
+        # neue Route speichern
+        f = request.files['gpx']
+        f.save()
+        return render_template("view_route.html")
+
+    return render_template("view_route.html")
+
+######
+######
+######
 
 
 @app.route('/main', methods=["GET","POST"])
@@ -33,20 +71,6 @@ def show_routes():
     return render_template("show_routes.html")
 
 
-@app.route('/new_route', methods=["GET","POST"])
-def new_route():
-# - Strecke erstellen: new_route
-#     - Statische Seite mit Formular
-#     - Metadaten für Route
-#         - Name
-#         - Funktion (training, time trial, race)
-#     - Erste Fahrt erstellen - - Formular create_ride einbetten
-#           - GPX-Datei hochladen *
-#           - Medataten erfassen
-#     -> Formularinhalt mit POST an view_route
-    return render_template("new_route.html")
-
-
 @app.route('/new_ride', methods=["GET","POST"])
 def new_ride():
 # - Neue Fahrt: new_ride
@@ -56,22 +80,6 @@ def new_ride():
 #         - Namen, Evtl. dropdown mit training/pendeln
 #     -> Fahrt ansehen
     return render_template("new_ride.html")
-
-@app.route('/view_route/<route>', methods=["GET","POST"])
-def view_route():
-# - Streckenübersicht: view_route
-#     - Auf Karte Zeichnen
-#     - Übersicht der gefahrenen Strecken
-#     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
-#     - Button für neue Fahrt
-#     - Empfängt daten von new_ride und new_route
-    if request.method == "POST":
-        f = request.files['gpx']
-        f.save(f.filename)
-        upload = True
-        return render_template("view_route.html")
-
-    return render_template("view_route.html")
 
 
 @app.route('/view_ride', methods=["GET","POST"])

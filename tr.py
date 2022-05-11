@@ -6,10 +6,15 @@ import json
 from collections import defaultdict
 from collections import Counter
 import os
+from datetime import datetime
+import json
 
-# Example structure of the routes dictionary
-routes_ex = defaultdict(dict)
-routes_ex[0] = {
+
+def route_example():
+    # Example structure of the routes dictionary
+    routes = defaultdict(dict)
+    # example_route
+    routes[0] = {
                         "name": "Fahrt um den Zürichsee",
                         "gpx": "path to file",
                         "avg distance": 10.0,
@@ -22,6 +27,21 @@ routes_ex[0] = {
                              "climbs": 3233}
                                 ]
                     }
+    return routes
+
+def write_routes(routes,savefile):
+    with open(savefile, "w") as open_file:
+        json.dump(routes, open_file)
+
+
+def load_routes(savefile):
+    try:
+        with open(savefile) as open_file:
+            routes = json.load(open_file)
+    except FileNotFoundError:
+        routes = {}
+    return routes
+
 
 def create_dir(path):
     if not os.path.exists(path):
@@ -38,18 +58,8 @@ def tesd(hello):
     return "Testing tr import"
 
 
-def read_routes(file):
-    routes = routes_structure
-    return routes
-
-
 def add_route(new_route,routes):
     return 1
-
-
-def write_routes(file):
-    return 0
-# Return error message if write isn't possible
 
 
 # To do
