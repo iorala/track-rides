@@ -38,11 +38,6 @@ def add_route(routes,route_name,route_type):
         }
         return (routes,id_route)
 
-        # erste fahrt in der Route speichern
-        ride_date = request.form['ride_date']
-        gpx_file = request.files['gpx_file']
-
-
 def add_ride(routes,id_route,ride_date):
         id_ride = len(routes[id_route]["rides"])
         gpx = "ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
@@ -80,11 +75,6 @@ def read_track(filename):
 # Test-Function
 def tesd(hello):
     return "Testing tr import"
-
-
-def add_route(new_route,routes):
-    return 1
-
 
 # To do
 # - Draw map with Folium
