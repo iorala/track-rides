@@ -12,11 +12,16 @@ Shows the data for one route
 	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-{% if selected_route == "new" %}
-<p>Neue Strecke hochgeladen!</p>
-{% endif %}
 
-	<h1>{{ selected_route }}</h1>
+	<h1>Strecke: {{ routes[selected_route]["name"] }} </h1>
+	<h2>type: {{ routes[selected_route]["type"] }}</h2>
+
+	    <ul>
+        {% for id,rides in routes[selected_route]["rides"].items() %}
+			<li><a href="../view_ride/{{ selected_route }} {{ id }}">{{ rides["date"] }}</a></li>
+        {% endfor %}
+    </ul>
+
 
 <h2></h2>
 

@@ -59,8 +59,9 @@ def view_route(selected_route):
 #     - Übersicht der gefahrenen Strecken
 #     - Allgemeine Statistiken (on the fly berechnet aus den Fahrten)
 #     - Button für neue Fahrt
+    routes = tr.load_routes(savefile)
 
-    return render_template("view_route.html", selected_route=selected_route)
+    return render_template("view_route.html", routes=routes, selected_route=selected_route)
 ######
 ######
 ######
