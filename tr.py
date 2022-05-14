@@ -38,11 +38,12 @@ def add_route(routes,route_name,route_type):
         }
         return (routes,id_route)
 
-def add_ride(routes,id_route,ride_date):
+def add_ride(routes,id_route,ride_date,ride_name):
         id_ride = len(routes[id_route]["rides"])
         gpx = "ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
         routes[id_route]["rides"][id_ride] = {
             "date": ride_date,
+            "name": ride_name,
             "gpx" : gpx
         }
         return (routes,gpx)

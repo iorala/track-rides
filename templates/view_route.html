@@ -19,7 +19,7 @@ Shows the data for one route
 
 	    <ul>
         {% for id,rides in routes[selected_route]["rides"].items() %}
-			<li><a href="{{url_for('view_ride', selected_route=selected_route, selected_ride=id)}}">{{ rides["date"] }}</a></li>
+			<li><a href="{{url_for('view_ride', selected_route=selected_route, selected_ride=id)}}">{{ rides["date"] }} - {{ rides["name"] }} </a></li>
         {% endfor %}
     </ul>
 	<a href="{{url_for('new_ride', selected_route=selected_route)}}">Fahrt hinzufügen</a>

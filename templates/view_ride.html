@@ -19,7 +19,7 @@ shows the data of a single ride
 <body>
 
 	<h1>Strecke: {{ routes[selected_route]["name"] }} </h1>
-	<h2>Fahrt: {{ routes[selected_route]["rides"][selected_ride]["date"] }}</h2>
+	<h2>Fahrt: {{ routes[selected_route]["rides"][selected_ride]["name"] }} vom {{ routes[selected_route]["rides"][selected_ride]["date"] }}</h2>
 
     <h3>{{ selected_route}} - {{ selected_ride }} </h3>
 
