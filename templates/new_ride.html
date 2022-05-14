@@ -6,3 +6,22 @@
     - Send form to view_route
 
 -->
+<!DOCTYPE html>
+<html lang="de">
+ 	<head>
+    	<meta charset="utf-8">
+    	<title>Neue Fahrt hinzufügen</title>
+    	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+    <h1>Neue Fahrt hinzufügen für Strecke {{route_name}}</h1>
+    <form action="{{url_for('new_ride_add', selected_route=selected_route)}}" method="POST" enctype = "multipart/form-data">
+        <h3>Fahrt erfassen</h3>
+            <label for="ride_date">Datum der Fahrt:</label>
+            <input type="date" id="ride_date" name="ride_date">
+            <label for="gpx_file">GPX-Datei hochladen:</label>
+            <input type = "file" name="gpx_file" id="gpx_file"/>
+        <button type="submit">Senden</button>
+    </form>
+	</body>
+</html>

@@ -51,6 +51,20 @@ def new_route_add():
     #return redirect("/view_route/", code=302)
     return redirect("/view_route/" + str(id_route), code=302)
 
+@app.route('/new_ride_add/<selected_route>', methods=["GET","POST"])
+def new_ride_add(selected_route):
+# Saves the route and displays it after
+    if request.method == "POST":
+        id_route = selected_route
+        routes = tr.load_routes(savefile)
+        # neue Route speichern
+        # erste fahrt in der Route speichern
+        ride_date = request.form['ride_date']
+        routes,gpx = tr.add_ride(routes,id_route,ride_date)
+        gpx_file = request.files['gpx_file']
+        gpx_file.save(savedir + "/" + gpx)
+        tr.write_routes(routes, savefile)
+    return redirect("/view_route/" + str(id_route), code=302)
 
 @app.route('/view_route/<selected_route>', methods=["GET","POST"])
 def view_route(selected_route):
@@ -66,15 +80,18 @@ def view_route(selected_route):
 ######
 ######
 
-@app.route('/new_ride', methods=["GET","POST"])
-def new_ride():
+@app.route('/new_ride/<selected_route>', methods=["GET","POST"])
+def new_ride(selected_route):
 # - Neue Fahrt: new_ride
 #     - Formular ausfüllen
 #     - Datei hochladen
 #     - Metadaten erfassen
 #         - Namen, Evtl. dropdown mit training/pendeln
 #     -> Fahrt ansehen
-    return render_template("new_ride.html")
+    # routen laden, damit der Name zur verfügung steht
+    routes = tr.load_routes(savefile)
+
+    return render_template("new_ride.html", selected_route=selected_route, route_name=routes[selected_route]["name"])
 
 
 @app.route('/main', methods=["GET","POST"])
