@@ -37,11 +37,10 @@ def add_route(routes,route_name,route_type):
         }
         return (routes,id_route)
 
-def add_ride(routes,id_route,ride_date,ride_name,savedir):
+def add_ride(routes,id_route,ride_name,savedir):
         id_ride = len(routes[id_route]["rides"])
         gpx = savedir + "/ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
         routes[id_route]["rides"][id_ride] = {
-            "date": ride_date,
             "name": ride_name,
             "gpx" : gpx
         }
@@ -50,15 +49,13 @@ def add_ride(routes,id_route,ride_date,ride_name,savedir):
 def ride_add_data(routes,id_route,id_ride):
     # duration has to be calculated on the fly as serializing timedeltas is too much of a hassle
     track = read_track(routes[id_route]["rides"][id_ride]["gpx"])
-    routes[id_route]["rides"][id_ride] = {
-        "start_time": track.time[0].isoformat(),
-        "end_time": track.time[-1].isoformat(),
-        "distance": track.distance[-1],
-        "avg_speed": track.velocity.mean(),
-        "max_speed": track.velocity.max(),
-        "avg_heartrate": track.heartrate.mean(),
-        "max_heartrate": track.heartrate.max()
-    }
+    routes[id_route]["rides"][id_ride]["start_time"] = track.time[0].isoformat()
+    routes[id_route]["rides"][id_ride]["end_time"] = track.time[-1].isoformat()
+    routes[id_route]["rides"][id_ride]["distance"] = track.distance[-1]
+    routes[id_route]["rides"][id_ride]["avg_speed"] = track.velocity.mean()
+    routes[id_route]["rides"][id_ride]["max_speed"] = track.velocity.max()
+    routes[id_route]["rides"][id_ride]["avg_heartrate"] = track.heartrate.mean()
+    routes[id_route]["rides"][id_ride]["max_heartrate"] = track.heartrate.max()
     return routes
 
 

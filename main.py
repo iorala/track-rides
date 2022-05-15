@@ -43,9 +43,8 @@ def new_route_add():
         route_type = request.form['route_type']
         routes,id_route = tr.add_route(routes,route_name,route_type)
         # add first ride
-        ride_date = request.form['ride_date']
         ride_name = request.form['ride_name']
-        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_date,ride_name,savedir)
+        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_name,savedir)
         gpx_file = request.files['gpx_file']
         gpx_file.save(gpx)
         # add ride data after writing the file
@@ -62,9 +61,8 @@ def new_ride_add(selected_route):
         routes = tr.load_routes(savefile)
         # neue Route speichern
         # erste fahrt in der Route speichern
-        ride_date = request.form['ride_date']
         ride_name = request.form['ride_name']
-        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_date,ride_name,savedir)
+        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_name,savedir)
         gpx_file = request.files['gpx_file']
         gpx_file.save(gpx)
         # add ride data after writing the file
