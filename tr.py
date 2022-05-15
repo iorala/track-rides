@@ -7,6 +7,9 @@ from collections import defaultdict
 from collections import Counter
 import os
 from datetime import datetime
+import plotly.express as px
+from plotly.offline import plot
+
 
 def add_route(routes,route_name,route_type):
         id_route = len(routes)
@@ -39,6 +42,16 @@ def ride_add_data(routes,id_route,id_ride):
     # ToDo: Recalculate the distance from the mean of all rides
     routes[id_route]["distance"]
     return routes
+
+def ride_graphs(routes,id_route,id_ride):
+    track = read_track(routes[id_route]["rides"][id_ride]["gpx"])
+    fig_speed = px.line(track.data, y="velocity (km/h)", labels={'time': 'Uhrzeit', 'velocity (km/h)': 'Geschwindigkeit in km/h'})
+    speed_graph = plot(fig_speed, output_type="div")
+    fig_elevation = px.line(track.data, y="elevation (m)", labels={'time': 'Uhrzeit', 'elevation (m)': 'Höhenmeter'})
+    elevation_graph = plot(fig_elevation, output_type="div")
+    fig_heartrate = px.line(track.data, y="heartrate (bpm)", labels={'time': 'Uhrzeit', 'heartrate (bpm)': 'Herzfrequenz'})
+    heartrate_graph = plot(fig_heartrate, output_type="div")
+    return(speed_graph,elevation_graph,heartrate_graph)
 
 
 def write_routes(routes,savefile):

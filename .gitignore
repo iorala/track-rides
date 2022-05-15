@@ -9,8 +9,6 @@ dataframes
 # File with the route data
 routes.json
 routes.json.bak
-## local testing files
-ride_test.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -21,7 +21,15 @@ shows the data of a single ride
 	<h1>Strecke: {{ routes[selected_route]["name"] }} </h1>
 	<h2>Fahrt: {{ routes[selected_route]["rides"][selected_ride]["name"] }} vom {{ routes[selected_route]["rides"][selected_ride]["date"] }}</h2>
 
-    <h3>{{ selected_route}} - {{ selected_ride }} </h3>
+    <h3>Fahrt</h3>
+	<!-- ToDo Fahrt zeichnen mit Folium -->
+	<h3>Geschwindigkeit</h3>
+	{{ speed_graph|safe }}
+	<h3>Höhenmeter</h3>
+	{{ elevation_graph|safe  }}
+	<h3>Herzfrequenz</h3>
+	{{ heartrate_graph|safe  }}
+
 
 
 

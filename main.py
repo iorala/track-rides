@@ -25,7 +25,7 @@ def new_route():
 #     - Statische Seite mit Formular
 #     - Metadaten für Route
 #         - Name
-#         - Funktion (training, time trial, race)
+#         - Funktion (training, commute, race)
 #     - Erste Fahrt erstellen - - Formular create_ride einbetten
 #           - GPX-Datei hochladen *
 #           - Medataten erfassen
@@ -128,7 +128,8 @@ def view_ride(selected_route,selected_ride):
 #     -> zurück zu Strecke
 
     routes = tr.load_routes(savefile)
-    return render_template("view_ride.html", routes=routes, selected_route=selected_route, selected_ride=selected_ride)
+    speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes,selected_route,selected_ride)
+    return render_template("view_ride.html", routes=routes, selected_route=selected_route, selected_ride=selected_ride, speed_graph=speed_graph,elevation_graph=elevation_graph,heartrate_graph=heartrate_graph)
 
 
 
