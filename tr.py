@@ -8,26 +8,6 @@ from collections import Counter
 import os
 from datetime import datetime
 
-def route_example():
-    # Example structure of the routes dictionary
-    routes = defaultdict(dict)
-    # example_route
-    routes[0] = {
-                        "name": "Fahrt um den Zürichsee",
-                        "avg distance": 10.0,
-                        "avg duration": 123,
-                        "rides": [
-                            {"id": 0,
-                             "date": "26.03.2022",
-                             "distance": 10.4,
-                             "duration": 123,
-                             "avg speed": 25,
-                             "climbs": 3233,
-                             "gpx": "path to file"}
-                                ]
-                    }
-    return routes
-
 def add_route(routes,route_name,route_type):
         id_route = len(routes)
         routes[id_route] = {
@@ -56,6 +36,8 @@ def ride_add_data(routes,id_route,id_ride):
     routes[id_route]["rides"][id_ride]["max_speed"] = track.velocity.max()
     routes[id_route]["rides"][id_ride]["avg_heartrate"] = track.heartrate.mean()
     routes[id_route]["rides"][id_ride]["max_heartrate"] = track.heartrate.max()
+    # ToDo: Recalculate the distance from the mean of all rides
+    routes[id_route]["distance"]
     return routes
 
 
@@ -84,10 +66,6 @@ def read_track(filename):
     return track
 
 
-# Test-Function
-def tesd(hello):
-    return "Testing tr import"
-
 # To do
 # - Draw map with Folium
 # - import folium
@@ -104,29 +82,3 @@ def tesd(hello):
 #                 opacity=0.8).add_to(m)
 # m
 
-
-'''
-# Not needed anymore because of using gpxo instead of gpxpy directly 
-def create_df(gpx):
-    # create a pandas dataframe from a gpx-object
-    df_list = []
-    for track in gpx.tracks:
-        for segment in track.segments:
-            for no, point in enumerate(segment.points):
-                df_list.append((point.time, point.latitude, point.longitude, point.elevation,
-                                point.extensions[0][1].text, segment.get_speed(no) * 3.6))  # * 3.6 -> m/ in km/h
-    df = pd.DataFrame.from_records(df_list,
-                                   columns=['time', 'latitude', 'longitude', 'elevation', 'heartrate', 'speed'])
-    return df
-
-
-def get_metadata(gpx):
-    # get some metadata directly from the gpx-object
-    metadata = {"start_time": gpx.get_time_bounds().start_time,
-                "end_time": gpx.get_time_bounds().end_time,
-                "duration": gpx.get_duration(),
-                "distance": gpx.length_3d(),
-                "climbs": gpx.get_uphill_downhill().uphill
-                }
-    return metadata
-'''

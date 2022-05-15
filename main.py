@@ -79,10 +79,9 @@ def view_route(selected_route):
 #     - Button für neue Fahrt
     routes = tr.load_routes(savefile)
 
+
     return render_template("view_route.html", routes=routes, selected_route=selected_route)
-######
-######
-######
+
 
 @app.route('/new_ride/<selected_route>', methods=["GET","POST"])
 def new_ride(selected_route):
