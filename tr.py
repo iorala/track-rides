@@ -7,7 +7,6 @@ from collections import defaultdict
 from collections import Counter
 import os
 from datetime import datetime
-import json
 
 def route_example():
     # Example structure of the routes dictionary
@@ -38,20 +37,34 @@ def add_route(routes,route_name,route_type):
         }
         return (routes,id_route)
 
-def add_ride(routes,id_route,ride_date,ride_name):
+def add_ride(routes,id_route,ride_date,ride_name,savedir):
         id_ride = len(routes[id_route]["rides"])
-        gpx = "ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
+        gpx = savedir + "/ride" + "_" + str(id_route) + "_" + str(id_ride) + ".gpx"
         routes[id_route]["rides"][id_ride] = {
             "date": ride_date,
             "name": ride_name,
             "gpx" : gpx
         }
-        return (routes,gpx)
+        return (routes,gpx,id_ride)
+
+def ride_add_data(routes,id_route,id_ride):
+    # duration has to be calculated on the fly as serializing timedeltas is too much of a hassle
+    track = read_track(routes[id_route]["rides"][id_ride]["gpx"])
+    routes[id_route]["rides"][id_ride] = {
+        "start_time": track.time[0].isoformat(),
+        "end_time": track.time[-1].isoformat(),
+        "distance": track.distance[-1],
+        "avg_speed": track.velocity.mean(),
+        "max_speed": track.velocity.max(),
+        "avg_heartrate": track.heartrate.mean(),
+        "max_heartrate": track.heartrate.max()
+    }
+    return routes
+
 
 def write_routes(routes,savefile):
     with open(savefile, "w") as open_file:
         json.dump(routes, open_file)
-
 
 
 def load_routes(savefile):
@@ -59,6 +72,7 @@ def load_routes(savefile):
         with open(savefile) as open_file:
             routes = json.load(open_file)
     except FileNotFoundError:
+        # without a file return an empty dict, so a new file can be created
         routes = defaultdict(dict)
     return routes
 

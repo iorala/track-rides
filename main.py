@@ -35,26 +35,28 @@ def new_route():
 
 @app.route('/new_route_add', methods=["GET","POST"])
 def new_route_add():
-# Saves the route and displays it after
+# Saves the route and displays the route overview after
     if request.method == "POST":
         routes = tr.load_routes(savefile)
         # neue Route speichern
         route_name = request.form['route_name']
         route_type = request.form['route_type']
         routes,id_route = tr.add_route(routes,route_name,route_type)
-        # erste fahrt in der Route speichern
+        # add first ride
         ride_date = request.form['ride_date']
         ride_name = request.form['ride_name']
-        routes,gpx = tr.add_ride(routes,id_route,ride_date,ride_name)
+        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_date,ride_name,savedir)
         gpx_file = request.files['gpx_file']
-        gpx_file.save(savedir + "/" + gpx)
+        gpx_file.save(gpx)
+        # add ride data after writing the file
+        routes = tr.ride_add_data(routes, id_route, id_ride)
         tr.write_routes(routes, savefile)
     #return redirect("/view_route/", code=302)
     return redirect("/view_route/" + str(id_route), code=302)
 
 @app.route('/new_ride_add/<selected_route>', methods=["GET","POST"])
 def new_ride_add(selected_route):
-# Saves the route and displays it after
+# Saves the ride and displays it after
     if request.method == "POST":
         id_route = selected_route
         routes = tr.load_routes(savefile)
@@ -62,11 +64,13 @@ def new_ride_add(selected_route):
         # erste fahrt in der Route speichern
         ride_date = request.form['ride_date']
         ride_name = request.form['ride_name']
-        routes,gpx = tr.add_ride(routes,id_route,ride_date,ride_name)
+        routes,gpx,id_ride = tr.add_ride(routes,id_route,ride_date,ride_name,savedir)
         gpx_file = request.files['gpx_file']
-        gpx_file.save(savedir + "/" + gpx)
+        gpx_file.save(gpx)
+        # add ride data after writing the file
+        routes = tr.ride_add_data(routes, id_route, id_ride)
         tr.write_routes(routes, savefile)
-    return redirect("/view_route/" + str(id_route), code=302)
+    return redirect("/view_ride/" + str(id_route) +"/" + str(id_ride), code=302)
 
 @app.route('/view_route/<selected_route>', methods=["GET","POST"])
 def view_route(selected_route):
