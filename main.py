@@ -2,6 +2,7 @@ from flask import Flask, redirect
 from flask import render_template
 from flask import request
 from collections import defaultdict
+import folium
 import tr
 
 app = Flask("track-ride")
@@ -118,8 +119,8 @@ def show_routes():
 
 
 
-@app.route('/view_ride/<selected_route>/<selected_ride>', methods=["GET","POST"])
-def view_ride(selected_route,selected_ride):
+@app.route('/view_ride/<id_route>/<id_ride>', methods=["GET", "POST"])
+def view_ride(id_route, id_ride):
 # - Fahrten ansehen: view_ride
 #     - Einzelansicht der Fahrt
 #     - Lädt das GPX-Ein
@@ -128,8 +129,14 @@ def view_ride(selected_route,selected_ride):
 #     -> zurück zu Strecke
 
     routes = tr.load_routes(savefile)
-    speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes,selected_route,selected_ride)
-    return render_template("view_ride.html", routes=routes, selected_route=selected_route, selected_ride=selected_ride, speed_graph=speed_graph,elevation_graph=elevation_graph,heartrate_graph=heartrate_graph)
+    track = tr.read_track(routes[id_route]["rides"][id_ride]["gpx"])
+    loc = list(track.data.iloc[:,[0,1]].itertuples(index=False, name=None))
+    m = folium.Map(location=[track.latitude[0], track.longitude[0]],zoom_start=12)
+    folium.PolyLine(loc,color='blue',weight=8,opacity=0.8).add_to(m)
+    m.fit_bounds([[track.latitude.max(), track.longitude.min()], [track.latitude.min(), track.longitude.max()]])
+    html_map = m._repr_html_()
+    speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes, id_route, id_ride)
+    return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, html_map=html_map, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph)
 
 
 

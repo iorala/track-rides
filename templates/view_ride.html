@@ -18,11 +18,11 @@ shows the data of a single ride
 </head>
 <body>
 
-	<h1>Strecke: {{ routes[selected_route]["name"] }} </h1>
-	<h2>Fahrt: {{ routes[selected_route]["rides"][selected_ride]["name"] }} vom {{ routes[selected_route]["rides"][selected_ride]["date"] }}</h2>
+	<h1>Strecke: {{ routes[id_route]["name"] }} </h1>
+	<h2>Fahrt: {{ routes[id_route]["rides"][id_ride]["name"] }} vom {{ routes[id_route]["rides"][id_ride]["date"] }}</h2>
 
     <h3>Fahrt</h3>
-	<!-- ToDo Fahrt zeichnen mit Folium -->
+	{{ html_map|safe }}
 	<h3>Geschwindigkeit</h3>
 	{{ speed_graph|safe }}
 	<h3>Höhenmeter</h3>

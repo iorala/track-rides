@@ -15,7 +15,7 @@
     </head>
     <body>
     <h1>Neue Fahrt hinzufügen für Strecke {{route_name}}</h1>
-    <form action="{{url_for('new_ride_add', selected_route=selected_route)}}" method="POST" enctype = "multipart/form-data">
+    <form action="{{url_for('new_ride_add', id_route=id_route)}}" method="POST" enctype = "multipart/form-data">
         <h3>Fahrt erfassen</h3>
             <label for="ride_name">Bezeichnung für die Fahrt:</label>
             <input type="text" name="ride_name" id="ride_name" placeholder="Bezeichnung eingeben">
