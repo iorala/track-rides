@@ -16,7 +16,17 @@ routes = defaultdict(dict)
 
 @app.route('/')
 def home():
-    return redirect("/show_route"), code=302)
+    return redirect("/show_routes", code=302)
+
+
+@app.route('/show_routes', methods=["GET", "POST"])
+# - Streckenübersicht
+# - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
+def show_routes():
+    routes = tr.load_routes(savefile)
+    return render_template("show_routes.html", routes=routes)
+
+
 
 @app.route('/test')
 # For testing
@@ -110,15 +120,6 @@ def main_page():
     #    return "Formular empfangen"
     #
     return render_template("main.html")
-
-@app.route('/show_routes', methods=["GET","POST"])
-# - Streckenübersicht
-# - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
-def show_routes():
-
-    return render_template("show_routes.html")
-
-
 
 
 @app.route('/view_ride/<id_route>/<id_ride>', methods=["GET", "POST"])

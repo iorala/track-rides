@@ -2,3 +2,29 @@
 Contains tiles for all routes -> rendered image of route + title, distance (avg), time (avg.) 
 Filter-option?
 -->
+<!--
+Shows the data for one route
+- Map of first ride
+- Tiles with all the rides
+- Maybe some insight data?
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<title>Alle Strecken</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+	<h1>Gefahrene Strecken </h1>
+	<ul>
+	{% for id,route in routes.items() %}
+		<li><a href="{{url_for('view_route', id_route=id)}}">{{ route["name"]}} - {{ route["rides"]["0"]["distance"] }} </a></li>
+	{% endfor %}
+	</ul>
+
+
+
+</body>
+</html>
