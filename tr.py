@@ -40,7 +40,7 @@ def ride_add_data(routes,id_route,id_ride):
     routes[id_route]["rides"][id_ride]["avg_heartrate"] = track.heartrate.mean()
     routes[id_route]["rides"][id_ride]["max_heartrate"] = track.heartrate.max()
     # ToDo: Recalculate the distance from the mean of all rides
-    routes[id_route]["distance"]
+    #routes[id_route]["distance"]
     return routes
 
 def ride_graphs(routes,id_route,id_ride):

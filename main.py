@@ -15,6 +15,10 @@ tr.create_dir(savedir)
 routes = defaultdict(dict)
 
 @app.route('/')
+def home():
+    return redirect("/show_route"), code=302)
+
+@app.route('/test')
 # For testing
 def hello_world():
     routes = tr.load_routes(savefile)
@@ -54,11 +58,11 @@ def new_route_add():
     #return redirect("/view_route/", code=302)
     return redirect("/view_route/" + str(id_route), code=302)
 
-@app.route('/new_ride_add/<selected_route>', methods=["GET","POST"])
-def new_ride_add(selected_route):
+@app.route('/new_ride_add/<id_route>', methods=["GET","POST"])
+def new_ride_add(id_route):
 # Saves the ride and displays it after
     if request.method == "POST":
-        id_route = selected_route
+        id_route = id_route
         routes = tr.load_routes(savefile)
         # neue Route speichern
         # erste fahrt in der Route speichern
@@ -71,8 +75,8 @@ def new_ride_add(selected_route):
         tr.write_routes(routes, savefile)
     return redirect("/view_ride/" + str(id_route) +"/" + str(id_ride), code=302)
 
-@app.route('/view_route/<selected_route>', methods=["GET","POST"])
-def view_route(selected_route):
+@app.route('/view_route/<id_route>', methods=["GET", "POST"])
+def view_route(id_route):
 # - Streckenübersicht: view_route
 #     - Auf Karte Zeichnen
 #     - Übersicht der gefahrenen Strecken
@@ -81,11 +85,11 @@ def view_route(selected_route):
     routes = tr.load_routes(savefile)
 
 
-    return render_template("view_route.html", routes=routes, selected_route=selected_route)
+    return render_template("view_route.html", routes=routes, id_route=id_route)
 
 
-@app.route('/new_ride/<selected_route>', methods=["GET","POST"])
-def new_ride(selected_route):
+@app.route('/new_ride/<id_route>', methods=["GET", "POST"])
+def new_ride(id_route):
 # - Neue Fahrt: new_ride
 #     - Formular ausfüllen
 #     - Datei hochladen
@@ -95,7 +99,7 @@ def new_ride(selected_route):
     # routen laden, damit der Name zur verfügung steht
     routes = tr.load_routes(savefile)
 
-    return render_template("new_ride.html", selected_route=selected_route, route_name=routes[selected_route]["name"])
+    return render_template("new_ride.html", id_route=id_route, route_name=routes[id_route]["name"])
 
 
 @app.route('/main', methods=["GET","POST"])
@@ -109,11 +113,9 @@ def main_page():
 
 @app.route('/show_routes', methods=["GET","POST"])
 # - Streckenübersicht
-# - Empfängt Formularinhalte von new_route
 # - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
 def show_routes():
-    # if request.method == "POST":
-    #     return "Formular empfangen"
+
     return render_template("show_routes.html")
 
 

@@ -13,16 +13,16 @@ Shows the data for one route
 </head>
 <body>
 
-	<h1>Strecke: {{ routes[selected_route]["name"] }} </h1>
-	<h2>type: {{ routes[selected_route]["type"] }}</h2>
-	<a href="{{url_for('new_ride', selected_route=selected_route)}}">Fahrt hinzufügen</a>
+	<h1>Strecke: {{ routes[id_route]["name"] }} </h1>
+	<h2>type: {{ routes[id_route]["type"] }}</h2>
+	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
 
 	    <ul>
-        {% for id,rides in routes[selected_route]["rides"].items() %}
-			<li><a href="{{url_for('view_ride', selected_route=selected_route, selected_ride=id)}}">{{ rides["date"] }} - {{ rides["name"] }} </a></li>
+        {% for id,rides in routes[id_route]["rides"].items() %}
+			<li><a href="{{url_for('view_ride', id_route=id_route, id_ride=id)}}">{{ rides["date"] }} - {{ rides["name"] }} </a></li>
         {% endfor %}
     </ul>
-	<a href="{{url_for('new_ride', selected_route=selected_route)}}">Fahrt hinzufügen</a>
+	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
 	<p></p>
 
 
