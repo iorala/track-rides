@@ -65,7 +65,6 @@ def new_route_add():
         # add ride data after writing the file
         routes = tr.ride_add_data(routes, id_route, id_ride)
         tr.write_routes(routes, savefile)
-    #return redirect("/view_route/", code=302)
     return redirect("/view_route/" + str(id_route), code=302)
 
 @app.route('/new_ride_add/<id_route>', methods=["GET","POST"])

@@ -20,7 +20,7 @@ Shows the data for one route
 	<h1>Gefahrene Strecken </h1>
 	<ul>
 	{% for id,route in routes.items() %}
-		<li><a href="{{url_for('view_route', id_route=id)}}">{{ route["name"]}} - {{ route["rides"]["0"]["distance"] }} </a></li>
+		<li><a href="{{url_for('view_route', id_route=id)}}">{{ route["name"]}} - {{ route["rides"]["0"]["distance"]}} - Kilometer</a></li>
 	{% endfor %}
 	</ul>
 
