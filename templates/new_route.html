@@ -4,15 +4,10 @@
     - Type: training, travel, recreation, race
 - Include the form for new_ride
 - > send to view route
+Titel: neue Strecke erstellen
 -->
-<!DOCTYPE html>
-<html lang="de">
- 	<head>
-    	<meta charset="utf-8">
-    	<title>Neue Strecke erstellen</title>
-    	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    </head>
-    <body>
+{% include "header.html" %}
+
     <h1>Neue Strecke erstellen</h1>
     <form action="new_route_add" method="POST" enctype = "multipart/form-data">
         <h2>Angaben zur Strecke</h2>
@@ -32,5 +27,5 @@
             <input type = "file" name="gpx_file" id="gpx_file"/>
         <button type="submit">Senden</button>
     </form>
-	</body>
-</html>
+
+{% include "footer.html" %}

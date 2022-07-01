@@ -6,17 +6,10 @@ shows the data of a single ride
     - Heart-Rate 
     - Speed 
     - Altitudes
-
+Titel: Fahrt ansehen
 -->
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-	<meta charset="utf-8">
-	<title>Strecke ansehen</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
+{% include "header.html" %}
 
 	<h1>Strecke: {{ routes[id_route]["name"] }} </h1>
 	<h2>Fahrt: {{ routes[id_route]["rides"][id_ride]["name"] }} vom {{ routes[id_route]["rides"][id_ride]["date"] }}</h2>
@@ -35,5 +28,4 @@ shows the data of a single ride
 
 <h2></h2>
 
-</body>
-</html>
+{% include "footer.html" %}

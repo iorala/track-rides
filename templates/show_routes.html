@@ -7,15 +7,11 @@ Shows the data for one route
 - Map of first ride
 - Tiles with all the rides
 - Maybe some insight data?
+
+titel - Gefahrene Strecken
 -->
-<!DOCTYPE html>
-<html lang="de">
-<head>
-	<meta charset="utf-8">
-	<title>Alle Strecken</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
+{% include "header.html" %}
+
 
 	<h1>Gefahrene Strecken </h1>
 	<ul>
@@ -24,7 +20,4 @@ Shows the data for one route
 	{% endfor %}
 	</ul>
 
-
-
-</body>
-</html>
+{% include "footer.html" %}
