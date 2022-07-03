@@ -133,7 +133,7 @@ def view_route(id_route):
     routes = tr.load_routes(savefile)
 
 
-    return render_template("view_route.html", routes=routes, id_route=id_route, title=f"Strecke anzeigen: {routes[id_route]['name']}")
+    return render_template("view_route.html", route_types=route_types, routes=routes, id_route=id_route, title=f"Strecke anzeigen: {routes[id_route]['name']}")
 
 
 @app.route('/new_ride/<id_route>', methods=["GET", "POST"])
