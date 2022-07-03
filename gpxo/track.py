@@ -1,4 +1,5 @@
 """General tools for gpx data processing based on gpxpy."""
+# Original file from https://github.com/ovinc/gpxo/blob/master/gpxo/track.py changes by Andreas la Roi
 
 import numpy as np
 import pandas as pd
