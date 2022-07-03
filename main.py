@@ -129,14 +129,8 @@ def view_ride(id_route, id_ride):
 #     - Auf Karte Zeichnen
 #     - Statistikplots
 #     -> zurück zu Strecke
-
     routes = tr.load_routes(savefile)
-    track = tr.read_track(routes[id_route]["rides"][id_ride]["gpx"])
-    loc = list(track.data.iloc[:,[0,1]].itertuples(index=False, name=None))
-    m = folium.Map(location=[track.latitude[0], track.longitude[0]],zoom_start=12)
-    folium.PolyLine(loc,color='blue',weight=8,opacity=0.8).add_to(m)
-    m.fit_bounds([[track.latitude.max(), track.longitude.min()], [track.latitude.min(), track.longitude.max()]])
-    html_map = m._repr_html_()
+    html_map = tr.draw_map(routes,id_route,id_ride)
     speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes, id_route, id_ride)
     return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, html_map=html_map, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph, title=f"Fahrt {routes[id_route]['rides'][id_ride]['name']} für Strecke {routes[id_route]['name']}")
 
