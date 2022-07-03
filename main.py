@@ -56,7 +56,6 @@ def home():
     #     - Fahrten pro woche
     routes = tr.load_routes(savefile)
     list_rides = []
-    #for id_route in routes:
     # liste mit fahrten holen
     routes = tr.load_routes(savefile)
     list_rides = []
@@ -66,7 +65,10 @@ def home():
             date_formated = babel.dates.format_datetime(date_parsed, "YYYY-MM-dd", tzinfo='Europe/Zurich')
             list_rides.append((date_formated, id_route, id_ride))
     last_rides = sorted(list_rides, reverse=True)[:5]
-    return render_template("main.html", last_rides=last_rides, routes=routes, title="dein Velo-Tagebuch")
+    no_rides=False
+    if len(last_rides) == 0:
+        no_rides = True
+    return render_template("main.html", no_rides=no_rides, last_rides=last_rides, routes=routes, title="dein Velo-Tagebuch")
 
 
 
