@@ -44,6 +44,11 @@ def utility_processor():
 
 @app.route('/')
 def home():
+    # - Trainingstagebuch
+    #     - Zeigt letzte Strecken
+    #     - letzte fahrten mit Statistiken
+    #     - Fahrten pro woche
+    # return render_template("main.html", routes=routes, title="Streckenübersicht")
     return redirect("/show_routes", code=302)
 
 
@@ -160,16 +165,6 @@ def view_ride(id_route, id_ride):
     routes = tr.load_routes(savefile)
     speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes, id_route, id_ride)
     return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph, title=f"Fahrt {routes[id_route]['rides'][id_ride]['name']} für Strecke {routes[id_route]['name']}")
-
-
-
-@app.route('/diary', methods=["GET","POST"])
-def diary():
-# - Trainingstagebuch
-#     - Zeigt letzte Strecken
-#     - letzte fahrten mit Statistiken
-#     - Fahrten pro woche
-    return render_template("diary.html")
 
 # App Ausführen
 if __name__ == "__main__":
