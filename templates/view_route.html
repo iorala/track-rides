@@ -3,13 +3,12 @@ Shows the data for one route
 - Map of first ride  
 - Tiles with all the rides 
 - Maybe some insight data?
-
-Titel: Strecke Ansehen
+- ToDo: Grid-Layout, add tiles
+- ToDo: Button to add ride
 -->
 {% include "header.html" %}
 
-
-	<h1>Strecke: {{ routes[id_route]["name"] }} </h1>
+	<h1>{{title}}</h1>
 	<h2>type: {{ routes[id_route]["type"] }}</h2>
 	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
 
