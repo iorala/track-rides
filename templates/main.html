@@ -26,7 +26,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{ routes[ride[1]]["rides"][ride[2]]["name"] }}</h5>
-                            <p class="card-text">{{ "%.2f"|format(routes[ride[1]]["rides"][ride[2]]["distance"]) }} km </p>
+                            <p class="card-text">{{ "%.2f"|format(routes[ride[1]]["rides"][ride[2]]["distance"]) }} km - {{ "%.2f"|format(routes[ride[1]]["rides"][ride[2]]["avg_speed"]) }} km/h </p>
                             <p class="card-text"><small class="text-muted">{{ routes[ride[1]]["rides"][ride[2]]["start_time"]|format_datetime('Datum')}}</small></p>
                             <a href="{{url_for('view_ride', id_route=ride[1], id_ride=ride[1])}}" class="btn btn-primary">Fahrt anzeigen</a>
                         </div>

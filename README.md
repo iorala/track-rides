@@ -62,3 +62,4 @@ Nach Starten des Programm öffnet man die Seite im http://127.0.0.1:5000/ im Bro
    - gpxo verwendet mpleaflet um karten zu rendern. Mpleaflet wird leider nicht mehr aktiv maintained (letzer Commit 2018, letzter release 2015), und Funktioniert nicht mehr mit aktuellen Versionen von matplotlib. Deshalb wurde der mpleaflet code auskommentiert und die Abhängigkeit entfernt 
 - Wie erwähnt wäre ein direkter Vergleich zwischen den Fahrten noch schön. 
 - Am besten wäre es, wenn die Entwicklung über den Zeitverlauf noch visualisiert werden könnte 
+- Es wird nicht verglichen ob es sich bei den Fahrten um die gleiche handelt. Es ist somit möglich ganz unterschiedliche Fahrten bei der gleichen Strecke hochzuladen. Es wäre besser, wenn diese für einen direkten Vergleich auf die gleiche Distanz zugeschnitten werden würden. 
