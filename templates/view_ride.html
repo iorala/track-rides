@@ -24,11 +24,11 @@ Titel: Fahrt ansehen
 				<h5 class="card-title">{{ routes[id_route]["rides"][id_ride]["name"] }} </h5>
 				<table class="table">
 					<tr><th scope="row">Datum</th> <td>{{ routes[id_route]["rides"][id_ride]["start_time"]|format_datetime('Datum')}}</td></tr>
-					<tr><th scope="row">Start</th> <td>{{ routes[id_route]["rides"][id_ride]["start_time"]|format_datetime('Zeit')}}</td></tr>
-					<tr><th scope="row">Ende</th> <td>{{ routes[id_route]["rides"][id_ride]["end_time"]|format_datetime('Zeit') }}</td></tr>
-					<tr><th scope="row">Distanz</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["distance"]) }}</td></tr>
-					<tr><th scope="row">⌀ Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["avg_speed"]) }}</td></tr>
-					<tr><th scope="row">max Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["max_speed"])  }}</td></tr>
+					<tr><th scope="row">Start</th> <td>{{ routes[id_route]["rides"][id_ride]["start_time"]|format_datetime('Zeit')}} Uhr</td></tr>
+					<tr><th scope="row">Ende</th> <td>{{ routes[id_route]["rides"][id_ride]["end_time"]|format_datetime('Zeit') }} Uhr</td></tr>
+					<tr><th scope="row">Distanz</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["distance"]) }} km</td></tr>
+					<tr><th scope="row">⌀ Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["avg_speed"]) }} km/h</td></tr>
+					<tr><th scope="row">max Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["max_speed"])  }} km/h</td></tr>
 					<tr><th scope="row">⌀ Herzfreq</th> <td>{{ "%.0f"|format(routes[id_route]["rides"][id_ride]["avg_heartrate"]) }}</td></tr>
 					<tr><th scope="row">max Herzfreq.</th> <td>{{ "%.0f"|format(routes[id_route]["rides"][id_ride]["max_heartrate"]) }}</td></tr>
 				</table>
