@@ -133,7 +133,7 @@ def view_route(id_route):
     routes = tr.load_routes(savefile)
 
 
-    return render_template("view_route.html", route_types=route_types, routes=routes, id_route=id_route, title=f"Strecke anzeigen: {routes[id_route]['name']}")
+    return render_template("view_route.html", route_types=route_types, routes=routes, id_route=id_route, title=f"Strecke anzeigen: «{routes[id_route]['name']}»")
 
 
 @app.route('/new_ride/<id_route>', methods=["GET", "POST"])
@@ -147,7 +147,7 @@ def new_ride(id_route):
     # routen laden, damit der Name zur verfügung steht
     routes = tr.load_routes(savefile)
 
-    return render_template("new_ride.html", id_route=id_route, route_name=routes[id_route]["name"], title=f"neue Fahrt für Strecke: {routes[id_route]['name']}")
+    return render_template("new_ride.html", id_route=id_route, route_name=routes[id_route]["name"], title=f"neue Fahrt für Strecke: «{routes[id_route]['name']}»")
 
 
 @app.route('/main', methods=["GET","POST"])
@@ -170,7 +170,7 @@ def view_ride(id_route, id_ride):
 #     -> zurück zu Strecke
     routes = tr.load_routes(savefile)
     speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes, id_route, id_ride)
-    return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph, title=f"Fahrt {routes[id_route]['rides'][id_ride]['name']} für Strecke {routes[id_route]['name']}")
+    return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph, title=f"Fahrt für Strecke: «{routes[id_route]['name']}»")
 
 # App Ausführen
 if __name__ == "__main__":

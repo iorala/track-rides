@@ -12,23 +12,23 @@ Shows the data for one route
 {% include "header.html" %}
 
 <div class="row row-cols-2 row-cols-md-2 g-4">
-{% for id,route in routes.items() %}
-  <div class="col">
+    {% for id,route in routes.items() %}
+    <div class="col">
 
-    <div class="card">
-      {{draw_map(routes, id, "0") | safe}}
-      <div class="card-body">
-        <p class="text-end"><span class="badge bg-primary rounded-pill text-right">{{ route_types[route["type"]]}}</span></p>
-        <h5 class="card-title">{{ route["name"]}}
-</h5>
-        <p class="card-text">{{ "%.2f"|format(routes[id]["rides"]["0"]["distance"]) }} - Kilometer </p>
+        <div class="card">
+            {{draw_map(routes, id, "0") | safe}}
+            <div class="card-body">
+                <p class="text-end"><span class="badge bg-primary rounded-pill text-right">{{ route_types[route["type"]]}}</span></p>
+                <h5 class="card-title">{{ route["name"]}}
+                </h5>
+                <p class="card-text">{{ "%.2f"|format(routes[id]["rides"]["0"]["distance"]) }} - Kilometer </p>
 
 
-          <a href="{{url_for('view_route', id_route=id)}}" class="btn btn-primary">Strecke anzeigen</a>
-      </div>
+                <a href="{{url_for('view_route', id_route=id)}}" class="btn btn-primary">Strecke anzeigen</a>
+            </div>
+        </div>
+
     </div>
-
-  </div>
- {% endfor %}
+    {% endfor %}
 </div>
 {% include "footer.html" %}

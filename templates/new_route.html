@@ -10,40 +10,34 @@ Titel: neue Strecke erstellen
 <div class="row">
     <div class="col">
         <form action="{{url_for('new_route_add')}}" method="POST" enctype = "multipart/form-data">
+            <h2>Angaben zur Strecke</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
+                <input type="text" name="route_name" id="route_name" class="form-control" placeholder="Kurze Bezeichnung für die Strecke" aria-label="Bezeichnungerfassen" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="route_type">Options</label>
+                <select class="form-select" id="route_type" name="route_type">
+                    <option selected>Art der Strecke</option>
+                    <option value="training">Training</option>
+                    <option value="commuting">Pendeln</option>
+                    <option value="race">Rennen</option>
+                </select>
+            </div>
+            <h3>Erste Fahrt erfassen</h3>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
+                <input type="text" name="ride_name" id="ride_name" class="form-control" placeholder="Kurze Bezeichnung für die Fahrt" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="gpx_file">GPX-Datei hochladen</label>
+                <input type="file" name="gpx_file" id="gpx_file" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Senden</button>
+        </form>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <h2>Angaben zur Strecke</h2>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
-            <input type="text" name="route_name" id="route_name" class="form-control" placeholder="Kurze Bezeichnung für die Strecke" aria-label="Bezeichnungerfassen" aria-describedby="basic-addon1">
-        </div>
-        <h3>Erste Fahrt erfassen</h3>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
-            <input type="text" name="ride_name" id="ride_name" class="form-control" placeholder="Kurze Bezeichnung für die Fahrt" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-            <select class="form-select" id="route_type" name="route_type">
-                <option selected>Art der Strecke</option>
-                <option value="training">Training</option>
-                <option value="commuting">Pendeln</option>
-                <option value="race">Rennen</option>
-            </select>
-        </div>
-    </div>
-</div>
 
-
-
-
-<div class="input-group mb-3">
-    <label class="input-group-text" for="gpx_file">GPX-Datei hochladen</label>
-    <input type="file" name="gpx_file" id="gpx_file" class="form-control">
-</div>
-
-<button type="submit" class="btn btn-primary">Senden</button>
-</form>
 {% include "footer.html" %}

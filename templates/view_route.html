@@ -9,46 +9,44 @@ Shows the data for one route
 {% include "header.html" %}
 
 <div class="row">
-	<div class="cols">
-<h2><span class="badge bg-primary rounded-pill text-end">{{ route_types[routes[id_route]["type"]]}}</span></h2>
-	</div>
+    <div class="cols">
+        <h2><span class="badge bg-primary rounded-pill text-end">{{ route_types[routes[id_route]["type"]]}}</span></h2>
+    </div>
 </div>
 
 <div class="row">
-	<div class="cols">
-<hr>
-	</div>
+    <div class="cols">
+        <hr>
+    </div>
 </div>
 <div class="row">
-	<div class="cols">
+    <div class="cols">
 
-	<div class="d-grid gap-2">
-		<a href="{{url_for('new_ride', id_route=id_route)}}" class="btn btn-primary btn-info" type="button">Fahrt hinzufügen</a>
-</div>
-</div>
-
-
-<div class="row row-cols-2 row-cols-md-2 g-4">
-{% for id,rides in routes[id_route]["rides"].items() %}
-  <div class="col">
-
-    <div class="card">
-      {{draw_map(routes, id_route, id) | safe}}
-      <div class="card-body">
-
-        <h5 class="card-title">{{ rides["name"] }} </h5>
-        <p class="card-text">{{ "%.2f"|format(routes[id]["rides"][id]["distance"]) }} - Kilometer </p>
-	  	<p class="card-text">{{ routes[id_route]["rides"][id]["start_time"]|format_datetime('Datum')}} </p>
-
-
-          <a href="{{url_for('view_ride', id_route=id_route, id_ride=id)}}" class="btn btn-primary">Fahrt anzeigen</a>
-      </div>
+        <div class="d-grid gap-2">
+            <a href="{{url_for('new_ride', id_route=id_route)}}" class="btn btn-primary btn-info" type="button">Fahrt hinzufügen</a>
+        </div>
     </div>
 
-  </div>
- {% endfor %}
-</div>
+
+    <div class="row row-cols-2 row-cols-md-2 g-4">
+        {% for id,rides in routes[id_route]["rides"].items() %}
+        <div class="col">
+
+            <div class="card">
+                {{draw_map(routes, id_route, id) | safe}}
+                <div class="card-body">
+
+                    <h5 class="card-title">{{ rides["name"] }} </h5>
+                    <p class="card-text">{{ "%.2f"|format(routes[id_route]["rides"][id]["distance"]) }} - Kilometer </p>
+                    <p class="card-text">{{ routes[id_route]["rides"][id]["start_time"]|format_datetime('Datum')}} </p>
+                    <a href="{{url_for('view_ride', id_route=id_route, id_ride=id)}}" class="btn btn-primary">Fahrt anzeigen</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
 
 
 
-{% include "footer.html" %}
+    {% include "footer.html" %}
