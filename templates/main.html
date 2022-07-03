@@ -1,6 +1,34 @@
-<!--
-main page
-ToDo: Write content for main page
-ToDo: Include ride diary: Shows a list of the last rides of the week e.g. maybe some graphs?
-ToDo: Include some insights
--->
+{% include "header.html" %}
+<div class="row">
+    <div class="cols">
+        <h2>Letzte Fahrten</h2>
+    </div>
+</div>
+<div container class="">
+    {% for ride in last_rides %}
+    <div class="row p-5">
+
+
+        <div class="col">
+
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{draw_map(routes, ride[1], ride[2]) | safe}}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ routes[ride[1]]["rides"][ride[2]]["name"] }}</h5>
+                            <p class="card-text">{{ "%.2f"|format(routes[ride[1]]["rides"][ride[2]]["distance"]) }} - Kilometer </p>
+                            <a href="{{url_for('view_ride', id_route=ride[1], id_ride=ride[1])}}" class="btn btn-primary">Fahrt anzeigen</a>
+                            <p class="card-text"><small class="text-muted">{{ routes[ride[1]]["rides"][ride[2]]["start_time"]|format_datetime('Datum')}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    {% endfor %}
+</div>

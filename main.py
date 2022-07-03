@@ -54,8 +54,20 @@ def home():
     #     - Zeigt letzte Strecken
     #     - letzte fahrten mit Statistiken
     #     - Fahrten pro woche
-    # return render_template("main.html", routes=routes, title="Streckenübersicht")
-    return redirect("/show_routes", code=302)
+    routes = tr.load_routes(savefile)
+    list_rides = []
+    #for id_route in routes:
+    # liste mit fahrten holen
+    routes = tr.load_routes(savefile)
+    list_rides = []
+    for id_route, content in routes.items():
+        for id_ride, ride_content in content['rides'].items():
+            date_parsed = dateutil.parser.isoparse(ride_content['start_time'])
+            date_formated = babel.dates.format_datetime(date_parsed, "YYYY-MM-dd", tzinfo='Europe/Zurich')
+            list_rides.append((date_formated, id_route, id_ride))
+    last_rides = sorted(list_rides, reverse=True)[:5]
+    return render_template("main.html", last_rides=last_rides, routes=routes, title="dein Velo-Tagebuch")
+
 
 
 @app.route('/show_routes', methods=["GET", "POST"])
