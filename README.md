@@ -4,15 +4,15 @@ Das Velotagebuch für deine Fahrten
 ## Problembeschreibung/Motivation
 ### Warum dieses Projekt
 - Ich fahre gerne Velo und zeichne meine Fahrten jeweils mit der GPS-Uhr auf
-- Dabei erhalte ich GPX-Datein mit vielen interessanten Daten zur Fahrt
+- Dabei erhalte ich GPX-Dateien mit vielen interessanten Daten zur Fahrt
 - Es existieren verschiedene Dienste, wo diese hochgeladen werden können (Komoot, Strava, Garmin connnect)
 - Dies sind jedoch bezüglich problematisch bezüglich der Privatsphäre und erlauben es nicht einzelne Fahrten der gleichen Strecke miteinander zu vergleichen
 
 ### Welches Problem löst das Projekt
-Track-rides erlaubt es in einer Web-App auf dem eigenen Rechner seine GPX-Dateien zu erfassen und so die eigene Entwicklung beim Velofahren zu verfolgen, ohne die Daten an andere anbieter zu senden.
+Track-rides erlaubt es in einer Web-App auf dem eigenen Rechner seine GPX-Dateien zu erfassen und so die eigene Entwicklung beim Velofahren zu verfolgen, ohne die Daten an andere Anbieter zu senden.
 
 ### Was macht das Projekt
-Track-rides ist ein Velotagebuch für die erfassung der eigenen Fahrten mittels GPX-Dateien. Diese werden jeweils unter Strecken zusammengefasst und bieten so die möglichkeit die eigene Entwicklung zu vergleichen. 
+Track-rides ist ein Velotagebuch für die Erfassung der eigenen Fahrten mittels GPX-Dateien. Diese werden jeweils unter Strecken zusammengefasst und bieten so die möglichkeit die eigene Entwicklung zu vergleichen. 
 Die Strecken können unterschiedlichen Typen zugeordnet werden: Z.b. Training, Pendeln und Rennen. Track-rides zeigt für jede Fahrt die gefahrene Strecke auf einer Karte an, sowie Kurven für Geschwindigkeit, Höhenmeter und Herzfrequenz
 
 ## Betrieb
