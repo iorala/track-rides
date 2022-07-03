@@ -24,8 +24,7 @@ def home():
 # - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
 def show_routes():
     routes = tr.load_routes(savefile)
-    return render_template("show_routes.html", routes=routes)
-
+    return render_template("show_routes.html", routes=routes, title="Gefahrene Strecken")
 
 
 @app.route('/test')
@@ -33,6 +32,7 @@ def show_routes():
 def hello_world():
     routes = tr.load_routes(savefile)
     return routes
+
 
 @app.route('/new_route', methods=["GET","POST"])
 def new_route():
@@ -94,7 +94,7 @@ def view_route(id_route):
     routes = tr.load_routes(savefile)
 
 
-    return render_template("view_route.html", routes=routes, id_route=id_route)
+    return render_template("view_route.html", routes=routes, id_route=id_route, title=f"Strecke anzeigen: {routes[id_route]['name']}")
 
 
 @app.route('/new_ride/<id_route>', methods=["GET", "POST"])
@@ -108,7 +108,7 @@ def new_ride(id_route):
     # routen laden, damit der Name zur verfügung steht
     routes = tr.load_routes(savefile)
 
-    return render_template("new_ride.html", id_route=id_route, route_name=routes[id_route]["name"])
+    return render_template("new_ride.html", id_route=id_route, route_name=routes[id_route]["name"], title=f"neue Fahrt für Strecke: {routes[id_route]['name']}")
 
 
 @app.route('/main', methods=["GET","POST"])
@@ -118,7 +118,7 @@ def main_page():
     # if request.method == "POST":
     #    return "Formular empfangen"
     #
-    return render_template("main.html")
+    return render_template("main.html", title=f"track-rides: Das Velo-Tagebuch")
 
 
 @app.route('/view_ride/<id_route>/<id_ride>', methods=["GET", "POST"])
@@ -138,7 +138,7 @@ def view_ride(id_route, id_ride):
     m.fit_bounds([[track.latitude.max(), track.longitude.min()], [track.latitude.min(), track.longitude.max()]])
     html_map = m._repr_html_()
     speed_graph,elevation_graph,heartrate_graph = tr.ride_graphs(routes, id_route, id_ride)
-    return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, html_map=html_map, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph)
+    return render_template("view_ride.html", routes=routes, id_route=id_route, id_ride=id_ride, html_map=html_map, speed_graph=speed_graph, elevation_graph=elevation_graph, heartrate_graph=heartrate_graph, title=f"Fahrt {routes[id_route]['rides'][id_ride]['name']} für Strecke {routes[id_route]['name']}")
 
 
 

@@ -11,7 +11,7 @@ Titel: Fahrt ansehen
 
 {% include "header.html" %}
 
-	<h1>Strecke: {{ routes[id_route]["name"] }} </h1>
+	<h1>{{title}}</h1>
 	<h2>Fahrt: {{ routes[id_route]["rides"][id_ride]["name"] }} vom {{ routes[id_route]["rides"][id_ride]["date"] }}</h2>
 
     <h3>Fahrt</h3>
