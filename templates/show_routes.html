@@ -18,8 +18,12 @@ Shows the data for one route
     <div class="card">
       {{draw_map(routes, id, "0") | safe}}
       <div class="card-body">
-        <h5 class="card-title">{{ route["name"]}}</h5>
+        <p class="text-end"><span class="badge bg-primary rounded-pill text-right">{{ route_types[route["type"]]}}</span></p>
+        <h5 class="card-title">{{ route["name"]}}
+</h5>
         <p class="card-text">{{ "%.2f"|format(routes[id]["rides"]["0"]["distance"]) }} - Kilometer </p>
+
+
           <a href="{{url_for('view_route', id_route=id)}}" class="btn btn-primary">Fahrten anzeigen</a>
       </div>
     </div>

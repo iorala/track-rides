@@ -16,6 +16,12 @@ savedir = "uploads"
 tr.create_dir(savedir)
 
 routes = defaultdict(dict)
+route_types = {
+        "training": "Training",
+        "commuting": "Pendeln",
+        "race":     "Rennen",
+
+}
 
 
 @app.template_filter()
@@ -57,7 +63,7 @@ def home():
 # - Filtermöglichkeiten für Suche (Ersetzt separate Suchseite)
 def show_routes():
     routes = tr.load_routes(savefile)
-    return render_template("show_routes.html", routes=routes, title="Streckenübersicht")
+    return render_template("show_routes.html",route_types=route_types, routes=routes, title="Streckenübersicht")
 
 
 @app.route('/test')
