@@ -79,17 +79,6 @@ def read_track(filename):
     track = gpxo.Track(filename)
     return track
 
-def draw_map(routes,id_route,id_ride):
-    track = read_track(routes[id_route]["rides"][id_ride]["gpx"])
-    loc = list(track.data.iloc[:,[0,1]].itertuples(index=False, name=None))
-    m = folium.Map(location=[track.latitude[0], track.longitude[0]],zoom_start=12)
-    folium.PolyLine(loc,color='blue',weight=8,opacity=0.8).add_to(m)
-    m.fit_bounds([[track.latitude.max(), track.longitude.min()], [track.latitude.min(), track.longitude.max()]])
-    html_map = m._repr_html_()
-    return(html_map)
-
-
-
 # To do
 # - Draw map with Folium
 # - import folium

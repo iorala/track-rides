@@ -16,7 +16,7 @@ Titel: Fahrt ansehen
 	<h2>Fahrt: {{ routes[id_route]["rides"][id_ride]["name"] }} vom {{ routes[id_route]["rides"][id_ride]["date"] }}</h2>
 
     <h3>Fahrt</h3>
-	{{ html_map|safe }}
+	{{draw_map(routes, id_route, id_ride) | safe}}
 	<h3>Geschwindigkeit</h3>
 	{{ speed_graph|safe }}
 	<h3>Höhenmeter</h3>
@@ -25,8 +25,5 @@ Titel: Fahrt ansehen
 	{{ heartrate_graph|safe  }}
 
 
-
-
-<h2></h2>
 
 {% include "footer.html" %}
