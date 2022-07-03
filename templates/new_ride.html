@@ -9,13 +9,13 @@
 {% include "header.html" %}
 
 
-    <form action="{{url_for('new_ride_add', id_route=id_route)}}" method="POST" enctype = "multipart/form-data">
-        <h3>Fahrt erfassen</h3>
-            <label for="ride_name">Bezeichnung für die Fahrt:</label>
-            <input type="text" name="ride_name" id="ride_name" placeholder="Bezeichnung eingeben">
-            <label for="gpx_file">GPX-Datei hochladen:</label>
-            <input type = "file" name="gpx_file" id="gpx_file"/>
-        <button type="submit">Senden</button>
-    </form>
+<form action="{{url_for('new_ride_add', id_route=id_route)}}" method="POST" enctype = "multipart/form-data">
+    <h3>Fahrt erfassen</h3>
+    <label for="ride_name">Bezeichnung für die Fahrt:</label>
+    <input type="text" name="ride_name" id="ride_name" placeholder="Bezeichnung eingeben">
+    <label for="gpx_file">GPX-Datei hochladen:</label>
+    <input type = "file" name="gpx_file" id="gpx_file"/>
+    <button type="submit">Senden</button>
+</form>
 
 {% include "footer.html" %}

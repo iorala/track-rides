@@ -73,7 +73,7 @@ def new_route():
 #           - GPX-Datei hochladen *
 #           - Medataten erfassen
 #     -> Formularinhalt mit POST an add_route
-    return render_template("new_route.html")
+    return render_template("new_route.html", title="Neue Strecke erfassen")
 
 
 @app.route('/new_route_add', methods=["GET","POST"])

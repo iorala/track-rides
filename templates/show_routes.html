@@ -11,10 +11,10 @@ Shows the data for one route
 -->
 {% include "header.html" %}
 
-	<ul>
+<ul>
 	{% for id,route in routes.items() %}
-		<li><a href="{{url_for('view_route', id_route=id)}}">{{ route["name"]}} </a>- {{ route["rides"]["0"]["distance"]}} - Kilometer</li>
+	<li><a href="{{url_for('view_route', id_route=id)}}">{{ route["name"]}} </a>- {{ route["rides"]["0"]["distance"]}} - Kilometer</li>
 	{% endfor %}
-	</ul>
+</ul>
 
 {% include "footer.html" %}

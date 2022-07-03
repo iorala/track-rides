@@ -8,16 +8,16 @@ Shows the data for one route
 -->
 {% include "header.html" %}
 
-	<h2>type: {{ routes[id_route]["type"] }}</h2>
-	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
+<h2>type: {{ routes[id_route]["type"] }}</h2>
+<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
 
-	    <ul>
-        {% for id,rides in routes[id_route]["rides"].items() %}
-			<li><a href="{{url_for('view_ride', id_route=id_route, id_ride=id)}}">{{ rides["date"] }} - {{ rides["name"] }} </a></li>
-        {% endfor %}
-    </ul>
-	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
-	<p></p>
+<ul>
+	{% for id,rides in routes[id_route]["rides"].items() %}
+	<li><a href="{{url_for('view_ride', id_route=id_route, id_ride=id)}}">{{ rides["date"] }} - {{ rides["name"] }} </a></li>
+	{% endfor %}
+</ul>
+<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
+<p></p>
 
 
 {% include "footer.html" %}

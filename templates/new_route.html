@@ -7,22 +7,43 @@
 Titel: neue Strecke erstellen
 -->
 {% include "header.html" %}
-    <form action="new_route_add" method="POST" enctype = "multipart/form-data">
+<div class="row">
+    <div class="col">
+        <form action="{{url_for('new_route_add')}}" method="POST" enctype = "multipart/form-data">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
         <h2>Angaben zur Strecke</h2>
-        <label for="route_name">Name der Strecke:</label>
-        <input type="text" name="route_name" id="route_name" placeholder="Name eingeben">
-        <label for="route_type">Art der Strecke:</label>
-        <select id="route_type" name="route_type">
-            <option value="training">Training</option>
-            <option value="commuting">Commuting</option>
-            <option value="race">Race</option>
-        </select>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
+            <input type="text" name="route_name" id="route_name" class="form-control" placeholder="Kurze Bezeichnung für die Strecke" aria-label="Bezeichnungerfassen" aria-describedby="basic-addon1">
+        </div>
+        <h3>Erste Fahrt erfassen</h3>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Bezeichnung</span>
+            <input type="text" name="ride_name" id="ride_name" class="form-control" placeholder="Kurze Bezeichnung für die Fahrt" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            <select class="form-select" id="route_type" name="route_type">
+                <option selected>Art der Strecke</option>
+                <option value="training">Training</option>
+                <option value="commuting">Pendeln</option>
+                <option value="race">Rennen</option>
+            </select>
+        </div>
+    </div>
+</div>
 
-        <h3>Fahrt erfassen</h3>
-            <label for="ride_name">Bezeichnung für die Fahrt:</label>
-            <input type="text" name="ride_name" id="ride_name" placeholder="Bezeichnung eingeben">
-            <label for="gpx_file">GPX-Datei hochladen:</label>
-            <input type = "file" name="gpx_file" id="gpx_file"/>
-        <button type="submit">Senden</button>
-    </form>
+
+
+
+<div class="input-group mb-3">
+    <label class="input-group-text" for="gpx_file">GPX-Datei hochladen</label>
+    <input type="file" name="gpx_file" id="gpx_file" class="form-control">
+</div>
+
+<button type="submit" class="btn btn-primary">Senden</button>
+</form>
 {% include "footer.html" %}
