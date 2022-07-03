@@ -7,8 +7,6 @@
 Titel: neue Strecke erstellen
 -->
 {% include "header.html" %}
-
-    <h1>{{title}}</h1>
     <form action="new_route_add" method="POST" enctype = "multipart/form-data">
         <h2>Angaben zur Strecke</h2>
         <label for="route_name">Name der Strecke:</label>
@@ -27,5 +25,4 @@ Titel: neue Strecke erstellen
             <input type = "file" name="gpx_file" id="gpx_file"/>
         <button type="submit">Senden</button>
     </form>
-
 {% include "footer.html" %}
