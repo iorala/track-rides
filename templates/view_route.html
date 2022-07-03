@@ -7,9 +7,7 @@ Shows the data for one route
 - ToDo: Button to add ride
 -->
 {% include "header.html" %}
-<div class="container">
 
-	<h1>{{title}}</h1>
 	<h2>type: {{ routes[id_route]["type"] }}</h2>
 	<a href="{{url_for('new_ride', id_route=id_route)}}">Fahrt hinzufügen</a>
 
@@ -22,5 +20,4 @@ Shows the data for one route
 	<p></p>
 
 
-<h2></h2>
 {% include "footer.html" %}

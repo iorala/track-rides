@@ -9,21 +9,67 @@ shows the data of a single ride
 Titel: Fahrt ansehen
 -->
 
-
 {% include "header.html" %}
 
-	<h1>{{title}}</h1>
-	<h2>Fahrt: {{ routes[id_route]["rides"][id_ride]["name"] }} vom {{ routes[id_route]["rides"][id_ride]["date"] }}</h2>
-
-    <h3>Fahrt</h3>
+<div class="row gx-5">
+    <div class="col-sm-8">
 	{{draw_map(routes, id_route, id_ride) | safe}}
-	<h3>Geschwindigkeit</h3>
+
+    </div>
+
+    <div class="col-sm-4">
+	<div class="card border-info mb-3" >
+  	<div class="card-header">Fahrtinfo</div>
+  	<div class="card-body">
+    <h5 class="card-title">{{ routes[id_route]["rides"][id_ride]["name"] }} </h5>
+	<table class="table">
+		<tr><th scope="row">Datum</th> <td>{{ routes[id_route]["rides"][id_ride]["start_time"]|format_datetime('Datum')}}</td></tr>
+		<tr><th scope="row">Start</th> <td>{{ routes[id_route]["rides"][id_ride]["start_time"]|format_datetime('Zeit')}}</td></tr>
+		<tr><th scope="row">Ende</th> <td>{{ routes[id_route]["rides"][id_ride]["end_time"]|format_datetime('Zeit') }}</td></tr>
+		<tr><th scope="row">Distanz</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["distance"]) }}</td></tr>
+		<tr><th scope="row">⌀ Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["avg_speed"]) }}</td></tr>
+		<tr><th scope="row">max Geschw.</th> <td>{{ "%.2f"|format(routes[id_route]["rides"][id_ride]["max_speed"])  }}</td></tr>
+		<tr><th scope="row">⌀ Herzfreq</th> <td>{{ "%.0f"|format(routes[id_route]["rides"][id_ride]["avg_heartrate"]) }}</td></tr>
+		<tr><th scope="row">max Herzfreq.</th> <td>{{ "%.0f"|format(routes[id_route]["rides"][id_ride]["max_heartrate"]) }}</td></tr>
+	</table>
+	</div>
+	</div>
+
+</div>
+
+<div class="row gx-5">
+    <div class="col">
+		<figure class="text-center">
+
 	{{ speed_graph|safe }}
-	<h3>Höhenmeter</h3>
+  <figcaption class="blockquote-footer">
+  <h3>Geschwindigkeit</h3>
+  </figcaption>
+</figure>
+</div>
+
+	<div class="row gx-5">
+    <div class="col">
+		<figure class="text-center">
+
 	{{ elevation_graph|safe  }}
-	<h3>Herzfrequenz</h3>
+  <figcaption class="blockquote-footer">
+  <h3>Höhenmeter</h3>
+  </figcaption>
+</figure>
+</div>
+
+<div class="row gx-5">
+    <div class="col">
+		<figure class="text-center">
+
 	{{ heartrate_graph|safe  }}
+  <figcaption class="blockquote-footer">
+  <h3>Herzfrequenz</h3>
+  </figcaption>
+</figure>
+</div>
 
-
+</div>
 
 {% include "footer.html" %}

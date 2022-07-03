@@ -4,6 +4,9 @@ from flask import request
 from collections import defaultdict
 import folium
 import tr
+import babel.dates
+import dateutil.parser
+
 
 app = Flask("track-ride")
 
@@ -13,6 +16,18 @@ savedir = "uploads"
 tr.create_dir(savedir)
 
 routes = defaultdict(dict)
+
+
+@app.template_filter()
+# Nicely format the dates
+def format_datetime(value, format='Datum'):
+    date = dateutil.parser.isoparse(value)
+    if format == 'Datum':
+        format="EEEE, d. MMMM y"
+    elif format == 'Zeit':
+        format="HH:mm"
+    return babel.dates.format_datetime(date, format, tzinfo='Europe/Zurich')
+
 
 @app.context_processor
 # - Karten zeichnen in Jinja Templates aufrufen
